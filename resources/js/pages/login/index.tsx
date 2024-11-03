@@ -1,5 +1,9 @@
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { AuthLayout } from "@/layouts/auth-layout";
+import { Link } from "@inertiajs/react";
+import { LogIn } from "lucide-react";
 
 export default function Login() {
   return (
@@ -20,8 +24,24 @@ export default function Login() {
         
       </div>
 
-      <main className="w-[55%]">
+      <main className="w-[55%] flex items-center justify-center">
+        <form className="flex flex-col min-w-96 max-w-lg w-full items-center">
+          <h2 className="font-title text-neutral-900 font-bold text-4xl">Faça seu login</h2>
 
+          <div className="w-full mt-10">
+            <Label>Email</Label>
+            <Input type="email" />
+          </div>
+
+          <div className="w-full mt-6">
+            <Label>Senha</Label>
+            <Input type="password" />
+          </div>
+
+          <Link href="/" className="text-neutral-400 text-sm underline self-start mt-2">Esqueceu sua senha?</Link>
+
+          <Button className="w-1/2 mt-12"><LogIn className="w-[18px] h-[18px]"/> Entrar</Button>
+        </form>
       </main>
     </AuthLayout>
   )
