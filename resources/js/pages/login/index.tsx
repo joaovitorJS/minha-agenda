@@ -17,7 +17,7 @@ export default function Login() {
           <h2 className="text-white font-bold text-4xl font-title">Sua Agenda Online</h2>
           <p className="text-zinc-200 font-medium text-base">Crie agendamentos online e deixe o papel de lado.</p>
 
-          <Button className="mt-4">Crie sua conta</Button>
+          <Button className="mt-4" asChild><Link href="/register">Crie sua conta</Link></Button>
         </div>
 
         <div className="absolute -bottom-[300px] -left-[150px] bg-circles h-[400px] w-[400px] bg-contain" />

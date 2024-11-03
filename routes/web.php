@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('guest')->group(function() { 
     Route::get('/login', [LoginController::class, 'index'])
         ->name('login.index');
+
+    Route::get('/register', [LoginController::class, 'register'])
+        ->name('register.index');
 });
 
 
