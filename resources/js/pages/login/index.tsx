@@ -1,12 +1,22 @@
-import { Link } from "@inertiajs/react";
+import { useEffect } from "react";
+import { Link, usePage } from "@inertiajs/react";
 import { LogIn } from "lucide-react";
 
 import { AuthLayout } from "@/layouts/auth-layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
 
 export default function Login() {
+  const { messages } = usePage().props
+
+  useEffect(() => {
+    if (messages?.success) {
+      toast.success(messages.success)
+    }
+  }, [])
+
   return (
     <AuthLayout>
       <div className="w-[45%] bg-green-blue px-10 py-6 relative h-screen">

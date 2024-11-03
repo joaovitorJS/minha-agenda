@@ -23,6 +23,6 @@ class RegisterController extends Controller
 			'password' => Hash::make($request->password),
 		]);
 
-		return redirect(route('login.index'));
+		return redirect(route('login.index'))->with('success', 'Conta criada com sucesso!');
 	}
 }
