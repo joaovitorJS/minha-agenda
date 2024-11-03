@@ -1,9 +1,10 @@
+import { Link } from "@inertiajs/react";
+import { LogIn } from "lucide-react";
+
+import { AuthLayout } from "@/layouts/auth-layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { AuthLayout } from "@/layouts/auth-layout";
-import { Link } from "@inertiajs/react";
-import { LogIn } from "lucide-react";
 
 export default function Login() {
   return (
