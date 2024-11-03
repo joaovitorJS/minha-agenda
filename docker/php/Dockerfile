@@ -13,6 +13,9 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install zip
 
+RUN apt-get install -y libpq-dev \
+    && docker-php-ext-install pdo_pgsql pgsql
+        
 RUN pecl install redis && docker-php-ext-enable redis
 
 # Set the working directory

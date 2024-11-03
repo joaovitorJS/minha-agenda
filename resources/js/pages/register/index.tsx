@@ -1,39 +1,88 @@
-import { Link } from "@inertiajs/react";
+import { FormEvent } from "react";
+import { Link, useForm } from "@inertiajs/react";
 import { LogIn } from "lucide-react";
 
 import { AuthLayout } from "@/layouts/auth-layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import InputError from "@/components/input-error";
 
 export default function Register() {
+  const { post, reset, setData, data, errors, processing } = useForm({
+    name: '',
+    email: '',
+    password: '',
+    password_confirmation: '',
+  })
+
+  const handleRegisterUser = (event: FormEvent) => {
+    event.preventDefault()
+
+    post(route('register')), {
+      onFinish: () => reset('password', 'password_confirmation')
+    }
+  }
+
   return (
     <AuthLayout>
       <main className="w-[55%] flex items-center justify-center">
-        <form className="flex flex-col min-w-96 max-w-lg w-full items-center">
+        <form className="flex flex-col min-w-96 max-w-lg w-full items-center" onSubmit={handleRegisterUser}>
           <h2 className="font-title text-neutral-900 font-bold text-4xl">Crie sua conta</h2>
 
           <div className="w-full mt-10">
-            <Label>Nome</Label>
-            <Input type="text" />
+            <Label htmlFor="name">Nome</Label>
+            <Input 
+              type="text" 
+              id="name" 
+              name="name" 
+              value={data.name}
+              onChange={(e) => setData('name', e.target.value)}
+              required
+            />
+            <InputError className="mt-2" message={errors.name} />
           </div>
 
           <div className="w-full mt-6">
-            <Label>Email</Label>
-            <Input type="email" />
+            <Label htmlFor="email">Email</Label>
+            <Input 
+              type="email" 
+              id="email"
+              name="email"
+              value={data.email}
+              onChange={(e) => setData('email', e.target.value)}
+              required
+            />
+            <InputError className="mt-2" message={errors.email} />
           </div>
 
           <div className="w-full mt-6">
-            <Label>Senha</Label>
-            <Input type="password" />
+            <Label htmlFor="password">Senha</Label>
+            <Input 
+              type="password" 
+              id="password"
+              name="password"
+              value={data.password}
+              onChange={(e) => setData('password', e.target.value)}
+              required
+            />
+            <InputError className="mt-2" message={errors.password} />
           </div>
 
           <div className="w-full mt-6">
-            <Label>Confirmar Senha</Label>
-            <Input type="password" />
+            <Label htmlFor="password_confirmation">Confirmar Senha</Label>
+            <Input 
+              type="password" 
+              id="password_confirmation"
+              name="password_confirmation"
+              value={data.password_confirmation}  
+              onChange={(e) => setData('password_confirmation', e.target.value)}
+              required
+            />
+            <InputError className="mt-2" message={errors.password_confirmation} />
           </div>
 
-          <Button className="w-1/2 mt-12"><LogIn className="w-[18px] h-[18px]"/> Cadastrar</Button>
+          <Button className="w-1/2 mt-12" disabled={processing}><LogIn className="w-[18px] h-[18px]"/> Cadastrar</Button>
         </form>
       </main>
 
