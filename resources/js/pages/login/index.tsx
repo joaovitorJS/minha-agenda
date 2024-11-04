@@ -1,21 +1,36 @@
-import { useEffect } from "react";
-import { Link, usePage } from "@inertiajs/react";
+import { FormEvent, useEffect } from "react";
+
+import { Link, useForm, usePage } from "@inertiajs/react";
 import { LogIn } from "lucide-react";
+import { toast } from "sonner";
 
 import { AuthLayout } from "@/layouts/auth-layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { toast } from "sonner";
+import InputError from "@/components/input-error";
 
 export default function Login() {
   const { messages } = usePage().props
+  const { post, reset, setData, data, errors, processing } = useForm({
+    email: '',
+    password: '',
+  });
 
   useEffect(() => {
     if (messages?.success) {
       toast.success(messages.success)
     }
   }, [])
+
+
+  const login = (event: FormEvent) => {
+    event.preventDefault()
+
+    post(route('login')), {
+      onFinish: () => reset('password')
+    }
+  }
 
   return (
     <AuthLayout>
@@ -36,22 +51,38 @@ export default function Login() {
       </div>
 
       <main className="w-[55%] flex items-center justify-center">
-        <form className="flex flex-col min-w-96 max-w-lg w-full items-center">
+        <form className="flex flex-col min-w-96 max-w-lg w-full items-center" onSubmit={login}>
           <h2 className="font-title text-neutral-900 font-bold text-4xl">Faça seu login</h2>
 
-          <div className="w-full mt-10">
-            <Label>Email</Label>
-            <Input type="email" />
+          <div className="w-full mt-10 flex flex-col gap-y-1.5">
+            <Label htmlFor="email">Email</Label>
+            <Input 
+              type="email" 
+              id="email"
+              name="email"
+              value={data.email}
+              onChange={(e) => setData('email', e.target.value)}
+              required
+            />
+            <InputError className="mt-2" message={errors.email} />
           </div>
 
-          <div className="w-full mt-6">
-            <Label>Senha</Label>
-            <Input type="password" />
+          <div className="w-full mt-6 flex flex-col gap-y-1.5">
+            <Label htmlFor="password">Senha</Label>
+            <Input 
+              type="password" 
+              id="password"
+              name="password"
+              value={data.password}
+              onChange={(e) => setData('password', e.target.value)}
+              required
+            />
+            <InputError className="mt-2" message={errors.password} />
           </div>
 
           <Link href="/" className="text-neutral-400 text-sm underline self-start mt-2">Esqueceu sua senha?</Link>
 
-          <Button className="w-1/2 mt-12"><LogIn className="w-[18px] h-[18px]"/> Entrar</Button>
+          <Button className="w-1/2 mt-12" disabled={processing}><LogIn className="w-[18px] h-[18px]"/> Entrar</Button>
         </form>
       </main>
     </AuthLayout>

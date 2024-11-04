@@ -16,7 +16,7 @@ export default function Register() {
     password_confirmation: '',
   })
 
-  const handleRegisterUser = (event: FormEvent) => {
+  const register = (event: FormEvent) => {
     event.preventDefault()
 
     post(route('register')), {
@@ -27,10 +27,10 @@ export default function Register() {
   return (
     <AuthLayout>
       <main className="w-[55%] flex items-center justify-center">
-        <form className="flex flex-col min-w-96 max-w-lg w-full items-center" onSubmit={handleRegisterUser}>
+        <form className="flex flex-col min-w-96 max-w-lg w-full items-center" onSubmit={register}>
           <h2 className="font-title text-neutral-900 font-bold text-4xl">Crie sua conta</h2>
 
-          <div className="w-full mt-10">
+          <div className="w-full mt-10 flex flex-col gap-y-1.5">
             <Label htmlFor="name">Nome</Label>
             <Input 
               type="text" 
@@ -43,7 +43,7 @@ export default function Register() {
             <InputError className="mt-2" message={errors.name} />
           </div>
 
-          <div className="w-full mt-6">
+          <div className="w-full mt-6 flex flex-col gap-y-1.5">
             <Label htmlFor="email">Email</Label>
             <Input 
               type="email" 
@@ -56,7 +56,7 @@ export default function Register() {
             <InputError className="mt-2" message={errors.email} />
           </div>
 
-          <div className="w-full mt-6">
+          <div className="w-full mt-6 flex flex-col gap-y-1.5">
             <Label htmlFor="password">Senha</Label>
             <Input 
               type="password" 
@@ -69,7 +69,7 @@ export default function Register() {
             <InputError className="mt-2" message={errors.password} />
           </div>
 
-          <div className="w-full mt-6">
+          <div className="w-full mt-6 flex flex-col gap-y-1.5">
             <Label htmlFor="password_confirmation">Confirmar Senha</Label>
             <Input 
               type="password" 
