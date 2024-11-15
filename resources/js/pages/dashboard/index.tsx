@@ -1,13 +1,9 @@
-import { Button } from "@/components/ui/button";
-import { Link } from "@inertiajs/react";
+import { AppLayout } from "@/layouts/app-layout";
 
 export default function Dashboard() {
   return (
-    <>
-      <h1>Dashboard</h1>
-      <Button asChild className="mt-4">
-        <Link href={route('logout')} method="post" as="button">Sair</Link>
-      </Button>
-    </>
+    <AppLayout>
+      Teste
+    </AppLayout>
   )
 }

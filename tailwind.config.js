@@ -14,13 +14,13 @@ export default {
     	extend: {
     		fontFamily: {
     			sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
-					mono: ['Space Grotesk', ...defaultTheme.fontFamily.sans],
-					title: ['Arvo', ...defaultTheme.fontFamily.serif]
+    			mono: ['Space Grotesk', ...defaultTheme.fontFamily.sans],
+    			title: ['Arvo', ...defaultTheme.fontFamily.serif]
     		},
-				backgroundImage: {
-					'green-blue': 'linear-gradient(180deg, rgba(5,230,129,1) 0%, rgba(2,135,138,1) 85%, rgba(2,101,121,1) 100%)',
-					'circles': "url('/assets/circle-lines.png')",
-				},
+    		backgroundImage: {
+    			'green-blue': 'linear-gradient(180deg, rgba(5,230,129,1) 0%, rgba(2,135,138,1) 85%, rgba(2,101,121,1) 100%)',
+    			circles: 'url("/assets/circle-lines.png")',
+    		},
     		borderRadius: {
     			lg: 'var(--radius)',
     			md: 'calc(var(--radius) - 2px)',
@@ -67,6 +67,16 @@ export default {
     				'4': 'hsl(var(--chart-4))',
     				'5': 'hsl(var(--chart-5))'
     			},
+    			sidebar: {
+    				DEFAULT: 'hsl(var(--sidebar-background))',
+    				foreground: 'hsl(var(--sidebar-foreground))',
+    				primary: 'hsl(var(--sidebar-primary))',
+    				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+    				accent: 'hsl(var(--sidebar-accent))',
+    				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+    				border: 'hsl(var(--sidebar-border))',
+    				ring: 'hsl(var(--sidebar-ring))'
+    			}
     		}
     	}
     },
